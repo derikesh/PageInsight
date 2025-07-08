@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, useEffect, useRef } from 'react';
 
 
 interface METRIC_INTERFACE {
@@ -15,14 +15,21 @@ interface METRIC_INTERFACE {
 
 const Metric = memo(( {submit , result}:METRIC_INTERFACE )=>{
 
+    const metricRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        if (submit && metricRef.current ) {
+            metricRef.current.scrollIntoView({ behavior: 'smooth' });
+        }
+    }, [submit]);
+
     if(!submit) return null
 
   return (
    <>
-   
-    {
+   {
         submit && (
-            <div className="w-full max-w-3xl mx-auto bg-gray-800 text-white p-6 rounded-lg shadow-md">
+            <div ref={metricRef} className="w-full max-w-3xl mx-auto bg-gray-800 text-white p-6 rounded-lg shadow-md">
             {
                 result ? (
                     <div>
@@ -53,7 +60,6 @@ const Metric = memo(( {submit , result}:METRIC_INTERFACE )=>{
             </div>
         )
     }
-   
    </>
   )
 })

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Zap ,Globe, Activity } from 'lucide-react';
 
 // compoent 
 import Metric from './component/Metric';
@@ -60,50 +61,98 @@ function App() {
   }
 
   return (
-    <div className="bg-gray-900 min-h-screen flex flex-col items-center text-white p-4 font-sans">
-      <div className="w-full max-w-3xl mx-auto">
-        <header className="text-center my-12">
-          <h1 className="text-5xl font-bold text-white mb-3 ">Website Performance Checker</h1>
-          <p className="text-3xl text-gray-400">Enter a URL to analyze its performance metrics instantly.</p>
-        </header>
-        
-        <main>
-          <div className='form-container' >
-            <form onSubmit={handleSubmit} className="flex gap-3 mb-8 items-center">
-                <label htmlFor="name" className="sr-only">Your Page Url</label>
-                <div className="relative flex-grow">
-                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <svg className="h-5 w-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
-                    </svg>
-                  </div>
-                  <input 
-                    id="name"
-                    value={data.name}
-                    onChange={ (e)=>setData( (prev) => ({...prev , name:e.target.value}) ) } 
-                    type="text" 
-                    name='name'
-                    placeholder="e.g. https://www.example.com"
-                    required
-                    className="w-full p-4 pl-10 bg-gray-800 border-2 border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                  />
+  <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+     
+      
+      <div className="relative z-10 min-h-screen flex flex-col">
+        {/* Header */}
+        <header className="text-center pt-16 pb-12 px-4">
+          <div className="max-w-4xl mx-auto">
+            <div className="flex justify-center mb-6">
+              <div className="relative">
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full blur-lg opacity-75 animate-pulse"></div>
+                <div className="relative bg-gradient-to-r from-blue-600 to-purple-600 p-4 rounded-full">
+                  <Zap className="h-8 w-8 text-white" />
                 </div>
-                <button type='submit' disabled={load} className="bg-blue-600 hover:bg-blue-700 disabled:bg-gray-600 disabled:cursor-not-allowed text-white font-bold py-4 px-8 rounded-lg transition-transform transform hover:scale-105">
-                  {load ? (
-                    <>
-                      <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                      </svg>
-                      Analyzing...
-                    </>
-                  ) : 'Analyze'}
-                </button>
-            </form>
+              </div>
+            </div>
+            
+            <h1 className="text-6xl md:text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-blue-400 mb-6 leading-tight">
+              Performance
+              <span className="block text-white">Insights</span>
+            </h1>
+            
+            <p className="text-xl md:text-2xl text-slate-300 max-w-2xl mx-auto leading-relaxed">
+              Analyze your website's performance with Google PageSpeed Insights and get actionable recommendations.
+            </p>
           </div>
+        </header>
 
-          <Metric submit={submit} result={result} />
+        {/* Main Content */}
+        <main className="flex-1 px-4 pb-16">
+          <div className="max-w-4xl mx-auto">
+            {/* Search Form */}
+            <div className="mb-16">
+              <form onSubmit={handleSubmit} className="relative">
+                <div className="relative group">
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl blur-sm opacity-25 group-hover:opacity-40 transition-opacity"></div>
+                  
+                  <div className="relative bg-slate-800/90 backdrop-blur-xl border border-slate-700/50 rounded-2xl p-2 shadow-2xl">
+                    <div className="flex flex-col md:flex-row gap-3">
+                      <div className="relative flex-1">
+                        <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none z-10">
+                          <Globe className="h-5 w-5 text-slate-400" />
+                        </div>
+                        
+                        <input
+                          id="name"
+                          value={data.name}
+                          onChange={(e) => setData((prev) => ({ ...prev, name: e.target.value }))}
+                          type="url"
+                          name="name"
+                          placeholder="https://www.example.com"
+                          required
+                          className="w-full h-14 pl-12 pr-4 bg-transparent text-white placeholder-slate-400 border-0 focus:outline-none focus:ring-0 text-lg"
+                        />
+                      </div>
+                      
+                      <button
+                        type="submit"
+                        disabled={load}
+                        className="h-14 px-8 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 disabled:from-slate-600 disabled:to-slate-600 disabled:cursor-not-allowed text-white font-semibold rounded-xl transition-all duration-200 transform hover:scale-105 disabled:scale-100 shadow-lg disabled:shadow-none flex items-center justify-center min-w-[140px]"
+                      >
+                        {load ? (
+                          <div className="flex items-center">
+                            <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
+                            Analyzing...
+                          </div>
+                        ) : (
+                          <div className="flex items-center">
+                            <Activity className="mr-2 h-5 w-5" />
+                            Analyze
+                          </div>
+                        )}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+
+            {/* Results */}
+            <Metric submit={submit} result={result} />
+          </div>
         </main>
+
+        {/* Footer */}
+        <footer className="text-center py-8 px-4 border-t border-slate-800">
+          <p className="text-slate-400">
+            Powered by Google PageSpeed Insights API
+          </p>
+        </footer>
       </div>
     </div>
   )
