@@ -71,7 +71,3 @@ Website Performance Checker is a React + Vite application that analyzes the perf
 ## AI-Assisted Development
 
 This project was developed with the help of AI tools to streamline the coding process and improve efficiency. AI was used for tasks like generating boilerplate code, optimizing UI design, and writing documentation. These tools helped save time and focus on delivering a polished application.
-
-## License
-
-This project is licensed under the MIT License.
