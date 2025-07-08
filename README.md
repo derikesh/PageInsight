@@ -1,69 +1,73 @@
-# React + TypeScript + Vite
+# Website Performance Checker
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Website Performance Checker is a React + Vite application that analyzes the performance metrics of a given URL using the Google PageSpeed Insights API. It provides key metrics such as visual load time, full page load time, page size, and the number of requests in a modern, styled UI.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Enter a URL to analyze its performance metrics instantly.
+- Fetches data from the Google PageSpeed Insights API.
+- Displays metrics in a responsive, card-based layout.
+- Styled using Tailwind CSS.
 
-## Expanding the ESLint configuration
+## Screenshot
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+![Website Performance Checker](./screenshot.png)
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Setup
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+1. Clone the repository:
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+   ```bash
+   git clone <repository-url>
+   ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+2. Navigate to the project directory:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+   ```bash
+   cd UrlParser
+   ```
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+3. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+4. Create a `.env` file in the root directory and add your Google PageSpeed Insights API key:
+
+   ```env
+   VITE_API_KEY=your_api_key_here
+   ```
+
+5. Start the development server:
+
+   ```bash
+   npm run dev
+   ```
+
+## Usage
+
+1. Open the application in your browser (default: `http://localhost:5173`).
+2. Enter a URL in the input field and click "Analyze".
+3. View the performance metrics displayed below the input field.
+
+## Troubleshooting
+
+- **Environment Variables Not Loading:** Ensure the `.env` file is correctly set up and the API key is valid.
+- **API Key Restrictions:** Verify that your API key has access to the Google PageSpeed Insights API.
+- **Vite Cache Issues:** Clear the Vite cache by running:
+
+  ```bash
+  npm run clean
+  ```
+
+## Technologies Used
+
+- React
+- Vite
+- Tailwind CSS
+- Google PageSpeed Insights API
+
+## License
+
+This project is licensed under the MIT License.
